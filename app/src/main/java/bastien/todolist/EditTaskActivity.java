@@ -1,18 +1,14 @@
 package bastien.todolist;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -22,11 +18,11 @@ import java.util.Calendar;
 import bastien.todolist.Data.Task;
 import bastien.todolist.Database.TaskDAO;
 
-
-public class AddTaskActivity extends AppCompatActivity {
+public class EditTaskActivity extends AppCompatActivity {
 
     TaskDAO database;
     Long user_id;
+    int id;
 
     SharedPreferences sharedPreferences;
 
@@ -39,16 +35,16 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add3);
-        database = new TaskDAO(getApplicationContext());
 
-        // on charge les données de l'utilisateur
-        sharedPreferences = getApplicationContext().getSharedPreferences("user", 0);
-        user_id = sharedPreferences.getLong("userId", 0);
+        id = getIntent().getIntExtra("id",0);
+        String titre = getIntent().getStringExtra("titre");
+        String description = getIntent().getStringExtra("description");
+        String date = getIntent().getStringExtra("date");
 
-        titre = findViewById(R.id.titre);
-        description = findViewById(R.id.description);
+        ((MaterialEditText) findViewById(R.id.description)).setText(description);
+        ((MaterialButton) findViewById(R.id.dateLimite)).setText(date);
+        ((MaterialEditText) findViewById(R.id.titre)).setText(titre);
 
-        dateLimite = findViewById(R.id.dateLimite);
 
         dateLimite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +55,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 int mMonth = c.get(Calendar.MONTH); // current month
                 int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
-                datePickerDialog = new DatePickerDialog(AddTaskActivity.this, R.style.MyDialogTheme,
+                datePickerDialog = new DatePickerDialog(EditTaskActivity.this, R.style.MyDialogTheme,
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -74,12 +70,10 @@ public class AddTaskActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
     }
 
-    // ajout d'une tâche à la base de donnée
-    public void AddTask(View view) {
+    // modification d'une tâche dans la base de donnée
+    public void EditTask(View view) {
 
         String Titre = titre.getText().toString();
         String Description = description.getText().toString();
@@ -92,9 +86,9 @@ public class AddTaskActivity extends AppCompatActivity {
 
             Task t = new Task(Titre, user_id, Description, DateLimite);
 
-            long verifAjout = database.ajouter(t);
+            int verifModif = database.modifier(t);
 
-            if (verifAjout > 0) {
+            if (verifModif > 0) {
                 Intent intent = new Intent(this, TaskActivity.class);
                 this.startActivity(intent);
             } else {
@@ -105,16 +99,5 @@ public class AddTaskActivity extends AppCompatActivity {
 
     }
 
-    // annulation de l'ajout de tâche
-    public void cancelTask(View view) {
-        Intent intent = new Intent(this, TaskActivity.class);
-        this.startActivity(intent);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add, menu);
-        return true;
-    }
 }

@@ -27,37 +27,40 @@ public class TaskDAO extends DatabaseDAO {
     }
 
     /**
-     * @param m le métier à ajouter à la base
+     * @param t la tâche à ajouter dans la base de donnée
      */
-    public long ajouter(Task m) {
+    public long ajouter(Task t) {
         open();
         ContentValues value = new ContentValues();
-        value.put(TaskDAO.TITLE, m.getTitre());
-        value.put(TaskDAO.USER_ID, m.getUser_id());
-        value.put(TaskDAO.DESCRIPTION, m.getDescription());
-        value.put(TaskDAO.DATE_LIMITE, m.getDateLimite());
-        return database.insert(TaskDAO.TABLE_NAME, null, value);
+        value.put(TITLE, t.getTitre());
+        value.put(USER_ID, t.getUser_id());
+        value.put(DESCRIPTION, t.getDescription());
+        value.put(DATE_LIMITE, t.getDateLimite());
+        return database.insert(TABLE_NAME, null, value);
     }
 
     /**
-     * @param id l'identifiant du métier à supprimer
+     * @param id l'identifiant de la tâche à supprimer
      */
     public void supprimer(long id) {
         database.delete(TABLE_NAME, KEY + " = ?", new String[]{String.valueOf(id)});
     }
 
     /**
-     * @param m le métier modifié
+     * @param t modification d'une tâche
      */
-    public void modifier(Task m) {
+    public int modifier(Task t) {
         open();
         ContentValues value = new ContentValues();
-        value.put(DESCRIPTION, m.getDescription());
-        database.update(TABLE_NAME, value, KEY + " = ?", new String[]{String.valueOf(m.getId())});
+        value.put(TITLE, t.getTitre());
+        value.put(DESCRIPTION, t.getDescription());
+        value.put(DATE_LIMITE, t.getDateLimite());
+
+        return database.update(TABLE_NAME, value, KEY + " = ?", new String[]{String.valueOf(t.getId())});
     }
 
     /**
-     * @param id l'identifiant du métier à récupérer
+     * @param id identifiant de la tâche
      */
     public void selectionner(long id) {
         Cursor c = database.rawQuery("select " + TABLE_NAME + " from " + TABLE_NAME + " where id = ?", new String[]{Long.toString(id)});

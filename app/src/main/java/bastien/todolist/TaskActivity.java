@@ -133,11 +133,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    /*public void cancel(View view)
-    {
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_CANCELED,returnIntent);
-    }*/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
