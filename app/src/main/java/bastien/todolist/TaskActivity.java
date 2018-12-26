@@ -1,5 +1,6 @@
 package bastien.todolist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -132,6 +133,11 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /*public void cancel(View view)
+    {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED,returnIntent);
+    }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -144,6 +150,11 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, AddTaskActivity.class);
             this.startActivity(intent);
         }
+
+        /*if (id == R.id.cancelTask) {
+            Intent intent = new Intent(this, AddTaskActivity.class);
+            this.startActivity(intent);
+        }*/
 
         //noinspection SimplifiableIfStatement
         if (menuToggle.onOptionsItemSelected(item)) {

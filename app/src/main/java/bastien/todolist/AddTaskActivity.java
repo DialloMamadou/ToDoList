@@ -1,6 +1,7 @@
 package bastien.todolist;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -30,6 +32,7 @@ public class AddTaskActivity extends AppCompatActivity {
     MaterialButton dateLimite;
 
     DatePickerDialog datePickerDialog;
+    TimePickerDialog timeePickerDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class AddTaskActivity extends AppCompatActivity {
                 int mYear = c.get(Calendar.YEAR); // current year
                 int mMonth = c.get(Calendar.MONTH); // current month
                 int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                final int mhour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
                 // date picker dialog
                 datePickerDialog = new DatePickerDialog(AddTaskActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
@@ -68,6 +73,18 @@ public class AddTaskActivity extends AppCompatActivity {
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+
+                timeePickerDialog= new TimePickerDialog(AddTaskActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                                dateLimite.setText(hourOfDay + "/"+minute);
+
+                            }
+                        }, mhour, minute,true);
+                datePickerDialog.show();
+
             }
         });
 
