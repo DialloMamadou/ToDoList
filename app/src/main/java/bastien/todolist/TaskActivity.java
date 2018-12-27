@@ -1,6 +1,5 @@
 package bastien.todolist;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +25,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import bastien.todolist.Adapter.TaskAdapter;
@@ -52,6 +53,10 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
     private TaskAdapter taskAdapter;
     private RecyclerView recyclerView;
     private DrawerLayout drawerLayout;
+
+
+    private List<Task> checkedTasks = new ArrayList<Task>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,25 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(taskAdapter);
+
+
+
+
+    }
+
+    public void shareTask(View view) {
+
+        Iterator<Task> it = tasks.iterator();
+
+        while(it.hasNext()){
+            Task t = it.next();
+            if(t.getChecked()) {
+                checkedTasks.add(t);
+            }
+        }
+        if(!checkedTasks.isEmpty()){
+            Toast.makeText(this, checkedTasks.get(0).getTitre() + " clicked!", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
@@ -160,6 +184,8 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -176,6 +202,16 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
         return false;
     }
+
+
+
+//    public boolean getChecked() {
+//        return isChecked;
+//    }
+//
+//    public void setChecked(boolean checked) {
+//        isChecked = checked;
+//    }
 
 //    public void addTask(View view) {
 //        // Initialize a new instance of LayoutInflater service

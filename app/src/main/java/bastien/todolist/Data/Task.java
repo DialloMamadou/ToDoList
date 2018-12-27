@@ -8,6 +8,8 @@ public class Task {
     private String description;
     private String dateLimite;
 
+    private boolean isChecked;
+
     public Task(String titre, Long user_id, String description, String dateLimite) {
         this.titre = titre;
         this.user_id = user_id;
@@ -57,5 +59,13 @@ public class Task {
 
     public void setDateLimite(String dateLimite) {
         this.dateLimite = dateLimite;
+    }
+
+    public boolean getChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }
