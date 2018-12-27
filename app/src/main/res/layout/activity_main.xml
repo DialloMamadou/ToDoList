@@ -60,4 +60,13 @@
         android:text="Inscription"
         android:textColor="@android:color/background_light"
         />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonConnexion"
+        android:text="Se souvenir de moi"
+        android:id="@+id/checkbox"
+        android:layout_centerHorizontal="true"
+
+        />
 </RelativeLayout>

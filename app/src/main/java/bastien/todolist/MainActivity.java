@@ -3,12 +3,17 @@ package bastien.todolist;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.prefs.PreferenceChangeEvent;
 
 import bastien.todolist.Database.UserDAO;
 
@@ -18,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     UserDAO database;
 
     EditText email, password;
-
+    CheckBox mCheckBox;
+    Button buttonConnexion;
+    SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -32,9 +39,54 @@ public class MainActivity extends AppCompatActivity {
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
+        mCheckBox = findViewById(R.id.checkbox);
+        //buttonConnexion = findViewById(R.id.buttonConnexion);
+
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+        checkSharedPreference();
+        /*buttonConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCheckBox.isChecked()){
+                    String checkbox = sharedPreferences.getString(getString(R.string.checkbox),"True");
+
+                    String mail = email.getText().toString();
+                    editor.putString(getString(R.string.email), mail);
+
+                    String psw = email.getText().toString();
+                    editor.putString(getString(R.string.password), psw);
+                    editor.commit();
+                }else {
+                    String checkbox = sharedPreferences.getString(getString(R.string.checkbox),"False");
+
+
+                    editor.putString(getString(R.string.email), "");
+
+
+                    editor.putString(getString(R.string.password), "");
+                    editor.commit();
+                }
+            }
+        });
+*/
 
     }
 
+    public void checkSharedPreference(){
+        String checkbox = sharedPreferences.getString(getString(R.string.checkbox),"False");
+        String mail = sharedPreferences.getString(getString(R.string.email),"");
+        String pwd = sharedPreferences.getString(getString(R.string.password),"");
+
+        email.setText(mail);
+        password.setText(pwd);
+
+        if(checkbox.equals("True")) {
+            mCheckBox.setChecked(true);
+        }else{
+            mCheckBox.setChecked(false);
+        }
+    }
     // lorsque l'utilisateur clique sur le bouton connexion
     public void Connexion(View view) {
 
@@ -48,14 +100,39 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Veuillez remplir tous les champs !", Toast.LENGTH_LONG).show();
         } else {
 
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
             boolean verifIdentifiants = database.verificationUtilisateur(Email, Password);
 
             if (verifIdentifiants) {
-                editor.putString("Email", Email);
-                editor.putString("Username", database.getUserName(Email));
-                editor.putLong("userId", database.getId(Email));
+                if (mCheckBox.isChecked()){
+
+                    editor.putString(getString(R.string.checkbox),"True");
+
+                    editor.putString("Username", database.getUserName(Email));
+
+                    editor.putLong("userId", database.getId(Email));
+
+                    Email = email.getText().toString();
+
+                    editor.putString(getString(R.string.email), Email);
+
+                    Password = email.getText().toString();
+
+                    editor.putString(getString(R.string.password), Password);
+
+                }else {
+                    editor.putString(getString(R.string.checkbox),"False");
+
+                    editor.putString("Username", database.getUserName(Email));
+
+                    editor.putLong("userId", database.getId(Email));
+
+                    editor.putString(getString(R.string.email), "");
+
+
+                    editor.putString(getString(R.string.password), "");
+
+                }
+
                 editor.commit();
 
                 Toast.makeText(this, "Connexion réussie !", Toast.LENGTH_LONG).show();
