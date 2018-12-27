@@ -157,7 +157,6 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -171,10 +170,10 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             this.startActivity(intent);
         }
 
-        /*if (id == R.id.cancelTask) {
-            Intent intent = new Intent(this, AddTaskActivity.class);
+        if (id == R.id.patageTask) {
+            Intent intent = new Intent(this, SendTaskActivity.class);
             this.startActivity(intent);
-        }*/
+        }
 
         //noinspection SimplifiableIfStatement
         if (menuToggle.onOptionsItemSelected(item)) {
