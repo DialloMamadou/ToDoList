@@ -132,6 +132,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
