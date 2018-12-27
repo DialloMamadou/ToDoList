@@ -132,12 +132,6 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
-
-    /*public void cancel(View view)
-    {
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_CANCELED,returnIntent);
-    }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -151,10 +145,10 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             this.startActivity(intent);
         }
 
-        /*if (id == R.id.cancelTask) {
-            Intent intent = new Intent(this, AddTaskActivity.class);
+        if (id == R.id.patageTask) {
+            Intent intent = new Intent(this, SendTaskActivity.class);
             this.startActivity(intent);
-        }*/
+        }
 
         //noinspection SimplifiableIfStatement
         if (menuToggle.onOptionsItemSelected(item)) {

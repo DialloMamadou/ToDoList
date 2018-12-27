@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_icons8_annuler" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../icons/icons8-annuler.svg" />
+                            <entry key="outputName" value="ic_icons8_partager" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../icons/icons8-partager.svg" />
                           </map>
                         </option>
                       </PersistentState>
