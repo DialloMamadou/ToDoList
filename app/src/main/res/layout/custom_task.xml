@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <!--tools:context="bastien.todolist.SendTaskActivity"-->
 
-
-    <RelativeLayout
+        <RelativeLayout
 
         android:id="@+id/foreground"
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:background="@android:color/white"
         android:padding="5dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       <!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,13 +31,12 @@
                 android:maxLines="1"
                 android:textAppearance="?android:textAppearanceLarge"
                 tools:text="Call Mom" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <TextView
             android:id="@+id/titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/button"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="2dp"
             android:scaleType="centerCrop"
@@ -58,25 +58,41 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="17sp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="31dp"
-            android:layout_height="26dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:background="@drawable/ic_icons8_annuler" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="31dp"
-            android:layout_height="27dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="1dp"
-            android:background="@drawable/ic_icons8_parametres" />
+            <Button
+                android:id="@+id/buttonPartager"
+                android:layout_width="31dp"
+                android:layout_height="26dp"
+                android:onClick="btnpartager"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="80dp"
+                android:background="@drawable/ic_icons8_partager"
+                />
+            <Button
+                android:id="@+id/buttonModifier"
+                android:layout_width="31dp"
+                android:layout_height="26dp"
+                android:onClick="btnmadifier"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/ic_icons8_modifier"
+                />
+
+            <Button
+                android:id="@+id/buttonSupprimer"
+                android:layout_width="31dp"
+                android:layout_height="27dp"
+                android:onClick="btnsupprimer"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="viewEnd"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_icons8_supprimer" />
 
 
     </RelativeLayout>

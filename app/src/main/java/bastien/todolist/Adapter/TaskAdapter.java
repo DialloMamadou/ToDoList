@@ -42,9 +42,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         myViewHolder.titre.setText(task.getTitre());
         myViewHolder.description.setText(task.getDescription());
-        myViewHolder.checkbox.setChecked(list.get(i).getChecked());
+        //myViewHolder.checkbox.setChecked(list.get(i).getChecked());
 
-        myViewHolder.checkbox.setOnClickListener(new View.OnClickListener() {
+        /*yViewHolder.checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -59,7 +59,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                     myViewHolder.checkbox.setChecked(true);
                 }
             }
-        });
+        });*/
 
     }
 
@@ -88,7 +88,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         public TextView titre, description;
 
-        public CheckedTextView checkbox;
+        //public CheckedTextView checkbox;
 
         public RelativeLayout layout_task;
 
@@ -101,8 +101,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
             layout_task = taskView.findViewById(R.id.layout_task_list);
 
 
-            checkbox = itemView.findViewById(R.id.task_checkbox);
-            checkbox.setClickable(false);
+            //checkbox = itemView.findViewById(R.id.task_checkbox);
+            //checkbox.setClickable(false);
 //            itemView.setOnClickListener(this);
         }
 

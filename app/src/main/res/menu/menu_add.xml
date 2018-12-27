@@ -13,11 +13,11 @@
 
 
 
-    <item
+    <!--<item
         android:id="@+id/patageTask"
         android:icon="@drawable/ic_icons8_partager"
         android:title="Send Task"
-        app:showAsAction="always" />
+        app:showAsAction="always" />-->
     <item
         android:id="@+id/ajoutTask"
         android:icon="@drawable/ajout_task"

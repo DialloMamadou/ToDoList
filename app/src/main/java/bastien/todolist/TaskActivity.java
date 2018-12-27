@@ -170,7 +170,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             this.startActivity(intent);
         }
 
-        if (id == R.id.patageTask) {
+        /*if (id == R.id.patageTask) {
             Intent intent = new Intent(this, SendTaskActivity.class);
             this.startActivity(intent);
         }
@@ -178,7 +178,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (menuToggle.onOptionsItemSelected(item)) {
             return true;
-        }
+        }*/
 
 
         return super.onOptionsItemSelected(item);
