@@ -9,6 +9,9 @@ import java.util.List;
 
 import bastien.todolist.Data.Task;
 
+/**
+ * Modele de la classe Task
+ */
 public class TaskDAO extends DatabaseDAO {
 
     public static final String TABLE_NAME = "Task";
@@ -42,8 +45,9 @@ public class TaskDAO extends DatabaseDAO {
     /**
      * @param id l'identifiant de la tâche à supprimer
      */
-    public void supprimer(long id) {
-        database.delete(TABLE_NAME, KEY + " = ?", new String[]{String.valueOf(id)});
+    public int supprimer(long id) {
+        open();
+        return database.delete(TABLE_NAME, KEY + " = ?", new String[]{String.valueOf(id)});
     }
 
     /**

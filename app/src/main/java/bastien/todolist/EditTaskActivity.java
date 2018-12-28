@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -34,17 +35,24 @@ public class EditTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add3);
+        setContentView(R.layout.activity_add_task);
+
+        database = new TaskDAO(getApplicationContext());
 
         id = getIntent().getIntExtra("id",0);
-        String titre = getIntent().getStringExtra("titre");
-        String description = getIntent().getStringExtra("description");
-        String date = getIntent().getStringExtra("date");
+        String old_Titre = getIntent().getStringExtra("titre");
+        String old_Description = getIntent().getStringExtra("description");
+        String old_Date = getIntent().getStringExtra("date");
 
-        ((MaterialEditText) findViewById(R.id.description)).setText(description);
-        ((MaterialButton) findViewById(R.id.dateLimite)).setText(date);
-        ((MaterialEditText) findViewById(R.id.titre)).setText(titre);
 
+        ((MaterialEditText) findViewById(R.id.description)).setText(old_Description);
+        ((MaterialButton) findViewById(R.id.dateLimite)).setText(old_Date);
+        ((MaterialEditText) findViewById(R.id.titre)).setText(old_Titre);
+
+
+        titre = findViewById(R.id.titre);
+        description = findViewById(R.id.description);
+        dateLimite = findViewById(R.id.dateLimite);
 
         dateLimite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +80,8 @@ public class EditTaskActivity extends AppCompatActivity {
         });
     }
 
-    // modification d'une tâche dans la base de donnée
-    public void EditTask(View view) {
+    // Ici, on ajoute pas une tâche mais on l'a modifie
+    public void AddTask(View view) {
 
         String Titre = titre.getText().toString();
         String Description = description.getText().toString();
@@ -85,19 +93,34 @@ public class EditTaskActivity extends AppCompatActivity {
         } else {
 
             Task t = new Task(Titre, user_id, Description, DateLimite);
+            t.setId(id);
 
             int verifModif = database.modifier(t);
 
             if (verifModif > 0) {
                 Intent intent = new Intent(this, TaskActivity.class);
                 this.startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Modification réussie !", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Erreur, la tâche n'a pas été ajoutée !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Erreur, la tâche n'a pas été modifiée !", Toast.LENGTH_SHORT).show();
             }
 
         }
 
     }
 
+    // annulation de l'ajout de tâche
+    public void cancelTask(View view) {
+        Intent intent = new Intent(this, TaskActivity.class);
+        this.startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
 
 }

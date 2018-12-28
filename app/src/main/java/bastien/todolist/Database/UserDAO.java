@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+
+/**
+ * Modele de la classe User
+ */
 public class UserDAO extends DatabaseDAO {
 
     public static final String KEY = "id";
