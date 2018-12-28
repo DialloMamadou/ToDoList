@@ -7,6 +7,6 @@
         android:title="Nouvelle tâche"
         android:icon="@drawable/ic_icons8_plus"
         />
-    <item android:id="@+id/param" android:title="Paramètre" android:icon="@drawable/ic_icons8_parametres"/>
-    <item android:id="@+id/deconnexion" android:title="Déconnexion"/>
+    <item android:id="@+id/param" android:title="Profil" android:icon="@drawable/ic_icons8_utilisateur_masculin"/>
+    <item android:id="@+id/deconnexion" android:title="Déconnexion" android:icon="@drawable/ic_icons8_deconnexion"/>
 </menu>

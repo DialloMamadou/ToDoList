@@ -199,6 +199,12 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             this.startActivity(intent);
             return true;
         }
+        if (id == R.id.deconnexion) {
+//            Toast.makeText(this, "Add liste", Toast.LENGTH_LONG).show();
+            Intent logOut = new Intent(this, MainActivity.class);
+            this.startActivity(logOut);
+            return true;
+        }
 
         return false;
     }
