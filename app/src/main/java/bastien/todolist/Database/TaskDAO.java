@@ -9,6 +9,9 @@ import java.util.List;
 
 import bastien.todolist.Data.Task;
 
+/**
+ * Modele de la classe Task
+ */
 public class TaskDAO extends DatabaseDAO {
 
     public static final String TABLE_NAME = "Task";

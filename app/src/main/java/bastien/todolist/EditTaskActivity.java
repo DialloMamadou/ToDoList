@@ -18,6 +18,9 @@ import java.util.Calendar;
 import bastien.todolist.Data.Task;
 import bastien.todolist.Database.TaskDAO;
 
+/***
+ * Activité permettant de modifier une tâche
+ */
 public class EditTaskActivity extends AppCompatActivity {
 
     TaskDAO database;
@@ -34,7 +37,7 @@ public class EditTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add3);
+        setContentView(R.layout.activity_add_task);
 
         id = getIntent().getIntExtra("id",0);
         String titre = getIntent().getStringExtra("titre");

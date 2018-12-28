@@ -34,6 +34,10 @@ import bastien.todolist.Data.Task;
 import bastien.todolist.Database.TaskDAO;
 
 
+/**
+ * Activité des Tâches
+ * Contient la liste des tâches avec la possibilité d'en ajouter,supprimer,modifier
+ */
 public class TaskActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreferences sharedPreferences;
@@ -87,8 +91,8 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
         // Popup ajout rapide
 
-        showPopupBtn = (Button) findViewById(R.id.showPopupBtn);
-        linearLayout1 = (LinearLayout) findViewById(R.id.linearLayout1);
+//        showPopupBtn = (Button) findViewById(R.id.showPopupBtn);
+//        linearLayout1 = (LinearLayout) findViewById(R.id.linearLayout1);
 
 
         /* RecyclerView */
@@ -96,18 +100,35 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
         tasks = taskDAO.getAllTaskByUserId(user_id);
 
 
-        taskAdapter = new TaskAdapter(this, tasks);
+
+        // RecyclerView permettant d'afficher la liste des tâches
+        taskAdapter = new TaskAdapter(this,tasks, new TaskAdapter.ButtonAdapterListener() {
+
+            @Override
+            public void shareOnClick(View v, int position) {
+
+                Toast.makeText(TaskActivity.this, tasks.get(position).getTitre() + " clicked!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void editOnClick(View v, int position) {
+
+            }
+
+            @Override
+            public void deleteOnClick(View v, int position) {
+
+            }
+        });
+//        taskAdapter = new TaskAdapter(this, tasks);
         recyclerView = findViewById(R.id.recycler_view);
         drawerLayout = findViewById(R.id.layout_task_list);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(taskAdapter);
-
-
 
 
     }
@@ -129,39 +150,21 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void addTask2(View view) {
-        LayoutInflater layoutInflater = (LayoutInflater) TaskActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customView = layoutInflater.inflate(R.layout.activity_add_task, null);
 
-        closePopupBtn = (Button) customView.findViewById(R.id.quit);
-
-        //instantiate popup window
-        popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        //display the popup window
-        popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
-
-        //close the popup window on button click
-        closePopupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-    }
-
-    @Override
+    /**
+     * Permet d'afficher le menu avec un boutton d'ajout rapide de tâche
+     * */
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 
+    /**
+     * Si un bouton du menu est selectionner
+     * */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (menuToggle.onOptionsItemSelected(item)){
-            return true;
-        }
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -189,6 +192,9 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+    /**
+     * Si un bouton du "ToggleMenu" est sélectionné
+     * */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -200,12 +206,6 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 //            Toast.makeText(this, "Add liste", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, AddTaskActivity.class);
             this.startActivity(intent);
-            return true;
-        }
-        if (id == R.id.deconnexion) {
-//            Toast.makeText(this, "Add liste", Toast.LENGTH_LONG).show();
-            Intent logOut = new Intent(this, MainActivity.class);
-            this.startActivity(logOut);
             return true;
         }
 

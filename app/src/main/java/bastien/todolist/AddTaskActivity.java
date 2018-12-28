@@ -1,7 +1,6 @@
 package bastien.todolist;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,10 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -22,7 +19,9 @@ import java.util.Calendar;
 import bastien.todolist.Data.Task;
 import bastien.todolist.Database.TaskDAO;
 
-
+/**
+ * Activité permettant d'ajouter une tâche
+ */
 public class AddTaskActivity extends AppCompatActivity {
 
     TaskDAO database;
@@ -38,7 +37,9 @@ public class AddTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add3);
+        setContentView(R.layout.activity_add_task);
+
+        // on charge le modele de Task
         database = new TaskDAO(getApplicationContext());
 
         // on charge les données de l'utilisateur
@@ -50,6 +51,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         dateLimite = findViewById(R.id.dateLimite);
 
+        // listener permettant d'afficher le calendrier
         dateLimite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
