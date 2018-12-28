@@ -59,7 +59,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
@@ -101,8 +101,21 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             // si on clique sur l'un des boutons du layout d'une tâche
             @Override
             public void shareOnClick(View v, int position) {
+                Task t = tasks.get(position);
 
-                Toast.makeText(TaskActivity.this, tasks.get(position).getTitre() + " clicked!", Toast.LENGTH_SHORT).show();
+                //String titre = getIntent().getStringExtra("titre");
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+
+                intent.setType("text/plain");
+
+                intent.putExtra("titre", t.getTitre());
+                String sms = "Mon sms";
+                intent.putExtra(Intent.EXTRA_SUBJECT, t.getTitre());
+                intent.putExtra(Intent.EXTRA_TEXT, t.getDescription());
+
+
+                startActivity(Intent.createChooser(intent, "Partager la tâche avec:"));
             }
 
             @Override
