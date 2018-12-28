@@ -109,8 +109,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
                 intent.setType("text/plain");
 
-                intent.putExtra("titre", t.getTitre());
-                String sms = "Mon sms";
+
                 intent.putExtra(Intent.EXTRA_SUBJECT, t.getTitre());
                 intent.putExtra(Intent.EXTRA_TEXT, t.getDescription());
 
