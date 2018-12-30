@@ -1,6 +1,7 @@
 package bastien.todolist;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -29,8 +31,10 @@ public class AddTaskActivity extends AppCompatActivity {
 
     MaterialEditText titre, description;
     MaterialButton dateLimite;
+    MaterialButton heureLimite;
 
     DatePickerDialog datePickerDialog;
+    TimePickerDialog heurePickerDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class AddTaskActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
 
         dateLimite = findViewById(R.id.dateLimite);
+        heureLimite = findViewById(R.id.heureLimite);
 
         dateLimite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +68,7 @@ public class AddTaskActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                dateLimite.setText(dayOfMonth + "/"
+                                dateLimite.setText("Le "+dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
 
                             }
@@ -71,6 +76,23 @@ public class AddTaskActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+       heureLimite.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               final Calendar c = Calendar.getInstance();
+               int mHoure = c.get(Calendar.HOUR_OF_DAY);
+               int mMinute = c.get(Calendar.MINUTE);
+               heurePickerDialog = new TimePickerDialog(AddTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                   @Override
+                   public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                       heureLimite.setText(" A "+hourOfDay + ":" + minute);
+                   }
+               }, mHoure, mMinute, true);
+
+               heurePickerDialog.show();
+           }
+       });
 
 
     }
@@ -81,13 +103,14 @@ public class AddTaskActivity extends AppCompatActivity {
         String Titre = titre.getText().toString();
         String Description = description.getText().toString();
         String DateLimite = dateLimite.getText().toString();
+        String HeureLimite = heureLimite.getText().toString();
 
-        if (Titre.equals("") || Description.equals("")) {
+        if (Titre.equals("") || Description.equals("") || DateLimite.equals("") || HeureLimite.equals("")) {
             Toast.makeText(getApplicationContext(), "Remplissez tous les champs !", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            Task t = new Task(Titre, user_id, Description, DateLimite);
+            Task t = new Task(user_id,Titre, Description, DateLimite,HeureLimite);
 
             long verifAjout = database.ajouter(t);
 

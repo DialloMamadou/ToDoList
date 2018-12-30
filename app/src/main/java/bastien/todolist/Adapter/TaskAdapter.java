@@ -63,6 +63,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         myViewHolder.titre.setText(task.getTitre());
         myViewHolder.description.setText(task.getDescription());
+        myViewHolder.dateLimite.setText(task.getDateLimite());
+        myViewHolder.heureLimite.setText(task.getHeureLimite());
 
         //myViewHolder.checkbox.setChecked(list.get(i).getChecked());
 
@@ -112,7 +114,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
      */
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView titre, description;
+        public TextView titre, description, dateLimite,heureLimite;
 
 
         public RelativeLayout layout_task;
@@ -124,6 +126,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
             titre = taskView.findViewById(R.id.titre);
             description = taskView.findViewById(R.id.description);
+            dateLimite = taskView.findViewById(R.id.dateLimite);
+            heureLimite = taskView.findViewById(R.id.heureLimite);
 
             layout_task = taskView.findViewById(R.id.layout_task_list);
 

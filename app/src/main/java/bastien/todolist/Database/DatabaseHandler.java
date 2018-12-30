@@ -11,6 +11,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String TASK_DESCRIPTION = "description";
     public static final String TASK_USER_ID = "user_id";
     public static final String TASK_DATE_LIMITE = "date_limite";
+    public static final String TASK_HEURE_LIMITE = "heure_limite";
     public static final String TASK_CREATE_AT = "created_at";
 
     public static final String TASK_TABLE_NAME = "Task";
@@ -21,6 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     TASK_DESCRIPTION + " TEXT, " +
                     TASK_USER_ID + " INTEGER, " +
                     TASK_DATE_LIMITE + " TEXT, " +
+                    TASK_HEURE_LIMITE + " TEXT, " +
                     TASK_CREATE_AT + " TEXT " +
                     ");";
     public static final String TASK_TABLE_DROP = "DROP TABLE IF EXISTS " + TASK_TABLE_NAME + ";";

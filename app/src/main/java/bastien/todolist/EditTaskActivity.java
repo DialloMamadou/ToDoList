@@ -29,6 +29,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
     MaterialEditText titre, description;
     MaterialButton dateLimite;
+    MaterialButton heureLimite;
 
     DatePickerDialog datePickerDialog;
 
@@ -86,13 +87,14 @@ public class EditTaskActivity extends AppCompatActivity {
         String Titre = titre.getText().toString();
         String Description = description.getText().toString();
         String DateLimite = dateLimite.getText().toString();
+        String HeureLimite = heureLimite.getText().toString();
 
         if (Titre.equals("") || Description.equals("")) {
             Toast.makeText(getApplicationContext(), "Remplissez tous les champs !", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            Task t = new Task(Titre, user_id, Description, DateLimite);
+            Task t = new Task( user_id,Titre, Description, DateLimite,HeureLimite);
             t.setId(id);
 
             int verifModif = database.modifier(t);

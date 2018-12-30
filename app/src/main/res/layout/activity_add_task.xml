@@ -50,15 +50,28 @@
                 app:met_singleLineEllipsis="true"
                 />
 
-            <android.support.design.button.MaterialButton
-                android:id="@+id/dateLimite"
-                android:textSize="14sp"
-                android:layout_width="179dp"
-                android:layout_height="36dp"
-                android:background="@color/colorPrimary"
-                android:onClick="showTimePickerDialog"
-                android:text="Date limite" />
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/dateLimite"
+                    android:layout_width="179dp"
+                    android:layout_height="36dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="showTimePickerDialog"
+                    android:hint="Date limite"
+                    android:textSize="14sp" />
 
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/heureLimite"
+                    android:layout_width="179dp"
+                    android:layout_height="36dp"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="showTimePickerDialog"
+                    android:hint="Heure limite"
+                    android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -72,9 +85,11 @@
         android:layout_height="wrap_content"
         android:onClick="AddTask"
         app:elevation="6dp"
+
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right"
+        android:layout_marginBottom="102dp"
         app:fabSize="normal"
         />
 

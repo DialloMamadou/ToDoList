@@ -103,15 +103,18 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
             public void shareOnClick(View v, int position) {
                 Task t = tasks.get(position);
 
-                //String titre = getIntent().getStringExtra("titre");
-
                 Intent intent = new Intent(Intent.ACTION_SEND);
 
                 intent.setType("text/plain");
+                String titre = t.getTitre();
+                String description = t.getDescription();
+                String dateLimite = t.getDateLimite();
+                String heureLimite = t.getHeureLimite();
 
 
-                intent.putExtra(Intent.EXTRA_SUBJECT, t.getTitre());
-                intent.putExtra(Intent.EXTRA_TEXT, t.getDescription());
+                intent.putExtra(Intent.EXTRA_SUBJECT, titre);
+
+                intent.putExtra(Intent.EXTRA_TEXT, description);
 
 
                 startActivity(Intent.createChooser(intent, "Partager la tâche avec:"));
@@ -127,7 +130,8 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("id", t.getId());
                 intent.putExtra("titre", t.getTitre());
                 intent.putExtra("description", t.getDescription());
-                intent.putExtra("date", t.getDateLimite());
+                intent.putExtra("dateLimite", t.getDateLimite());
+                intent.putExtra("heureLimite", t.getHeureLimite());
 
                 TaskActivity.this.startActivity(intent);
                 Toast.makeText(TaskActivity.this, " Modification !", Toast.LENGTH_SHORT).show();

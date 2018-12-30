@@ -20,8 +20,9 @@ public class TaskDAO extends DatabaseDAO {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String DATE_LIMITE = "date_limite";
+    public static final String HEURE_LIMITE = "heure_limite";
 
-    public static final String TABLE_CREATE = "CREATE TABLE " + TABLE_NAME + " (" + KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_ID + " INTEGER" + TITLE + " TEXT, " + DESCRIPTION + " TEXT, " + DATE_LIMITE + " TEXT);";
+    public static final String TABLE_CREATE = "CREATE TABLE " + TABLE_NAME + " (" + KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_ID + " INTEGER" + TITLE + " TEXT, " + DESCRIPTION + " TEXT, " + DATE_LIMITE + " TEXT, " + HEURE_LIMITE + " TEXT);";
 
     public static final String TABLE_DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
 
@@ -39,6 +40,7 @@ public class TaskDAO extends DatabaseDAO {
         value.put(USER_ID, t.getUser_id());
         value.put(DESCRIPTION, t.getDescription());
         value.put(DATE_LIMITE, t.getDateLimite());
+        value.put(HEURE_LIMITE, t.getHeureLimite());
         return database.insert(TABLE_NAME, null, value);
     }
 
@@ -59,6 +61,7 @@ public class TaskDAO extends DatabaseDAO {
         value.put(TITLE, t.getTitre());
         value.put(DESCRIPTION, t.getDescription());
         value.put(DATE_LIMITE, t.getDateLimite());
+        value.put(HEURE_LIMITE, t.getHeureLimite());
 
         return database.update(TABLE_NAME, value, KEY + " = ?", new String[]{String.valueOf(t.getId())});
     }
@@ -82,9 +85,10 @@ public class TaskDAO extends DatabaseDAO {
                 Task t = new Task();
                 t.setId(cursor.getInt(0));
                 t.setUser_id(cursor.getLong(1));
-                t.setDescription(cursor.getString(3));
                 t.setTitre(cursor.getString(2));
+                t.setDescription(cursor.getString(3));
                 t.setDateLimite(cursor.getString(4));
+                t.setHeureLimite(cursor.getString(5));
 
                 list.add(t);
 

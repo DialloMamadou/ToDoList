@@ -11,10 +11,12 @@
     <RelativeLayout
 
         android:id="@+id/foreground"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="115dp"
         android:background="@android:color/white"
-        android:padding="5dp">
+        android:padding="5dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
@@ -38,7 +40,7 @@
 
         <TextView
             android:id="@+id/titre"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="2dp"
@@ -51,13 +53,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titre"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
             android:maxLines="1"
             android:text="description"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/dateLimite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/description"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="-3dp"
+            android:layout_toRightOf="@+id/description"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:text="dateLimite"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/heureLimite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/titre"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:layout_toRightOf="@+id/dateLimite"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:text="heureLimite"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="17sp" />
 
@@ -71,31 +102,30 @@
             android:layout_marginTop="3dp"
 
             android:layout_marginEnd="80dp"
-            android:background="@drawable/ic_icons8_partager"
-            />
+            android:background="@drawable/ic_icons8_partager" />
+
         <Button
             android:id="@+id/buttonModifier"
             android:layout_width="31dp"
             android:layout_height="26dp"
-            android:onClick="btnmodifier"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/ic_icons8_modifier"
-            />
+            android:onClick="btnmodifier" />
 
         <Button
             android:id="@+id/buttonSupprimer"
             android:layout_width="31dp"
             android:layout_height="27dp"
-            android:onClick="btnsupprimer"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:textAlignment="viewEnd"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="0dp"
-            android:background="@drawable/ic_icons8_supprimer" />
+            android:background="@drawable/ic_icons8_supprimer"
+            android:onClick="btnsupprimer"
+            android:textAlignment="viewEnd" />
 
 
     </RelativeLayout>
