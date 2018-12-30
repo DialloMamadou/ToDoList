@@ -108,6 +108,7 @@ public class AddTaskActivity extends AppCompatActivity {
         if (Titre.equals("") || Description.equals("") || DateLimite.equals("") || HeureLimite.equals("")) {
             Toast.makeText(getApplicationContext(), "Remplissez tous les champs !", Toast.LENGTH_SHORT).show();
 
+
         } else {
 
             Task t = new Task(user_id,Titre, Description, DateLimite,HeureLimite);

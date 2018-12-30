@@ -43,17 +43,21 @@ public class EditTaskActivity extends AppCompatActivity {
         id = getIntent().getIntExtra("id",0);
         String old_Titre = getIntent().getStringExtra("titre");
         String old_Description = getIntent().getStringExtra("description");
-        String old_Date = getIntent().getStringExtra("date");
+        String old_Date = getIntent().getStringExtra("dateLimite");
+        String old_Heure = getIntent().getStringExtra("heureLimite");
 
 
+        ((MaterialEditText) findViewById(R.id.titre)).setText(old_Titre);
         ((MaterialEditText) findViewById(R.id.description)).setText(old_Description);
         ((MaterialButton) findViewById(R.id.dateLimite)).setText(old_Date);
+        ((MaterialButton) findViewById(R.id.heureLimite)).setText(old_Heure);
         ((MaterialEditText) findViewById(R.id.titre)).setText(old_Titre);
 
 
         titre = findViewById(R.id.titre);
         description = findViewById(R.id.description);
         dateLimite = findViewById(R.id.dateLimite);
+        heureLimite = findViewById(R.id.heureLimite);
 
         dateLimite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +93,7 @@ public class EditTaskActivity extends AppCompatActivity {
         String DateLimite = dateLimite.getText().toString();
         String HeureLimite = heureLimite.getText().toString();
 
-        if (Titre.equals("") || Description.equals("")) {
+        if (Titre.equals("") || Description.equals("") || DateLimite.equals("") || HeureLimite.equals("")) {
             Toast.makeText(getApplicationContext(), "Remplissez tous les champs !", Toast.LENGTH_SHORT).show();
 
         } else {
